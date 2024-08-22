@@ -1,5 +1,4 @@
-import { Button } from "@/components/ui/button";
-import Image from "next/image";
+import CriarPedido from "@/components/restaurante/criarPedido";
 
 export default function Home() {
   return (
@@ -10,9 +9,8 @@ export default function Home() {
 
       <div className="max-w-lg mx-auto flex flex-col items-center justify-center space-y-3">
         <div>Estamos em construção</div>
-        <div>
-          <Button>Teste SQS</Button>
-        </div>
+
+        <CriarPedido />
       </div>
     </div>
   );
