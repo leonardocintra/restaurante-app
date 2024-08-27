@@ -3,8 +3,6 @@ const url = `${process.env.AWS_LAMBDA_URL_CRIAR_PEDIDO}`;
 export async function POST(req: Request) {
   const data = await req.json();
 
-  console.log(data);
-
   const response = await fetch(url, {
     method: "POST",
     headers: {
@@ -12,11 +10,13 @@ export async function POST(req: Request) {
     },
     body: JSON.stringify({
       pedido: data.pedido,
-      item: "CARNE",
+      nome: data.nome,
+      telefone: data.telefone,
+      item: "Carnes",
       status: {
         id: 1,
         descricao: "Pedido criado",
-        data: "22/08/2024",
+        data: new Date().toUTCString(),
       },
     }),
   });

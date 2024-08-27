@@ -2,9 +2,12 @@
 
 import { useState } from "react";
 import { Button } from "../ui/button";
+import { Input } from "../ui/input";
 
 export default function CriarPedido() {
   const [pedido, setPedido] = useState("");
+  const [nome, setNome] = useState("");
+  const [telefone, setTelefone] = useState("");
 
   function generateOrderNumber(): string {
     const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
@@ -23,7 +26,7 @@ export default function CriarPedido() {
 
     fetch("/api/aws/", {
       method: "POST",
-      body: JSON.stringify({ pedido: pedidoGerado }),
+      body: JSON.stringify({ pedido: pedidoGerado, nome, telefone }),
       headers: { "Content-Type": "application/json" },
     });
 
@@ -32,11 +35,26 @@ export default function CriarPedido() {
 
   return (
     <div className="text-center">
-      <div>
-        <Button disabled={!!pedido} onClick={() => criarPedido()}>
-          Fazer meu pedido
-        </Button>
+      <div className="space-y-2">
+        <div className="space-y-2">
+          <Input
+            type="text"
+            placeholder="Seu nome ..."
+            onChange={(e) => setNome(e.target.value)}
+          />
+          <Input
+            type="number"
+            placeholder="Whastapp ..."
+            onChange={(e) => setTelefone(e.target.value)}
+          />
+        </div>
+        <div className="pt-5">
+          <Button disabled={!!pedido} onClick={() => criarPedido()}>
+            Fazer meu pedido
+          </Button>
+        </div>
       </div>
+
       {pedido && (
         <div className="mt-8">
           <div>Pedido criado com o número: {pedido}</div>
