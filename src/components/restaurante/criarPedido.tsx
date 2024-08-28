@@ -34,7 +34,7 @@ export default function CriarPedido() {
   };
 
   return (
-    <div className="text-center">
+    <div className="text-center px-4">
       <div className="space-y-2">
         <div className="space-y-2">
           <Input
@@ -53,14 +53,17 @@ export default function CriarPedido() {
             Fazer meu pedido
           </Button>
         </div>
-      </div>
 
-      {pedido && (
-        <div className="mt-8">
-          <div>Pedido criado com o número: {pedido}</div>
-          <div>Aguarde um momento enquanto o pedido é processado.</div>
-        </div>
-      )}
+        {pedido && (
+          <div className="mt-8 space-y-3">
+            <div>
+              Pedido criado com o número: <span className="text-emerald-800 font-semibold text-xl">{pedido}</span>{" "}
+            </div>
+            <div className="text-indigo-500 font-light">Aguarde um momento enquanto o pedido é processado.</div>
+            <div className="text-red-700 font-light">Voce irá receber notificações no seu Whatsapp :D.</div>
+          </div>
+        )}
+      </div>
     </div>
   );
 }
