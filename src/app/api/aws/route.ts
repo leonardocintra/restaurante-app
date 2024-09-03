@@ -9,6 +9,7 @@ export async function POST(req: Request) {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
+      restaurante: "tempeiro-e-amor",
       pedido: data.pedido,
       nome: data.nome,
       telefone: data.telefone,
