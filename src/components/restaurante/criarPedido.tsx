@@ -22,19 +22,28 @@ export default function CriarPedido() {
   }
 
   const criarPedido = async () => {
-    const pedidoGerado = generateOrderNumber();
+    const numeroPedido = generateOrderNumber();
 
     fetch("/api/aws/", {
       method: "POST",
-      body: JSON.stringify({ pedido: pedidoGerado, nome, telefone }),
+      body: JSON.stringify({ pedido: numeroPedido, nome, telefone }),
       headers: { "Content-Type": "application/json" },
     });
 
-    setPedido(pedidoGerado);
+    setPedido(numeroPedido);
   };
 
   return (
     <div className="text-center px-4">
+      <div className="my-3 border p-2 rounded-lg">
+        <h2 className="font-serif text-3xl text-slate-700 mb-4">Cardapio de hoje</h2>
+        <div>
+          <p>Carnes</p>
+          <p>Pizzas</p>
+          <p>Bebidas</p>
+          <p>Sobremesas</p>
+        </div>
+      </div>
       <div className="space-y-2">
         <div className="space-y-2">
           <Input
@@ -56,11 +65,16 @@ export default function CriarPedido() {
 
         {pedido && (
           <div className="mt-8 space-y-3">
-            <div>
-              Pedido criado com o número: <span className="text-emerald-800 font-semibold text-xl">{pedido}</span>{" "}
+            <div className="mt-5">
+              Pedido número:{" "}
+              <span className="text-green-800 font-bold text-xl">{pedido}</span>
             </div>
-            <div className="text-indigo-500 font-light">Aguarde um momento enquanto o pedido é processado.</div>
-            <div className="text-red-700 font-light">Voce irá receber notificações no seu Whatsapp :D.</div>
+            <div className="text-indigo-500 font-light">
+              Seu pedido ja está na fila para montagem da marmita :D
+            </div>
+            <div className="text-red-700 font-light">
+              Voce irá receber notificações no seu Whatsapp :D.
+            </div>
           </div>
         )}
       </div>
