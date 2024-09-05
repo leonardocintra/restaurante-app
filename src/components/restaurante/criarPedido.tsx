@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
 import MarmitexComponent from "./marmitex";
+import { FilePenLine, Laugh } from "lucide-react";
 
 export default function CriarPedido() {
   const [pedido, setPedido] = useState("");
@@ -51,13 +52,15 @@ export default function CriarPedido() {
           <p>Sobremesas</p>
         </div>
       </div>
-      <div className="space-y-2">
-        <div className="space-y-2">
+
+      <div className="space-y-2 flex flex-col items-center">
+        <div className="space-y-2 px-6 max-w-xs">
           <Input
             type="text"
             placeholder="Seu nome ..."
             onChange={(e) => setNome(e.target.value)}
           />
+
           <Input
             type="number"
             placeholder="Whastapp ..."
@@ -65,8 +68,12 @@ export default function CriarPedido() {
           />
         </div>
         <div className="pt-5">
-          <Button disabled={!!pedido} onClick={() => criarPedido()}>
-            Fazer meu pedido
+          <Button
+            className="gap-3"
+            disabled={!!pedido}
+            onClick={() => criarPedido()}
+          >
+            Fazer meu pedido <FilePenLine />
           </Button>
         </div>
 
@@ -79,8 +86,10 @@ export default function CriarPedido() {
             <div className="text-indigo-500 font-light">
               Seu pedido ja está na fila para montagem da marmita :D
             </div>
-            <div className="text-red-700 font-light">
-              Voce irá receber notificações no seu Whatsapp :D.
+            <div className="text-red-700 font-light flex justify-center space-x-2">
+              <div>Voce irá receber notificações no seu Whatsapp</div>
+
+              <Laugh />
             </div>
           </div>
         )}
