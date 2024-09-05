@@ -1,3 +1,4 @@
+import { Beef, EggFried, Salad } from "lucide-react";
 import { useEffect, useState } from "react";
 import { IMarmitexConfiguracao } from "restaurante";
 
@@ -18,24 +19,42 @@ export default function MarmitexComponent() {
 
   return (
     <div>
-      <h2>Listar marmitex aqui</h2>
+      <div className="my-4">
+        <h2 className="text-2xl">Selecione o marmitex</h2>
+        <h3 className="text-slate-600">Carnes | Guarnições | Salada </h3>
+      </div>
       <div>
-        {configuracao.map((item) => (
-          <div key={item.tipoMarmitex} className="flex text-xs mb-4 justify-between hover:bg-slate-200 rounded-lg p-1">
-            <div>
-              <p>
+        <div className="grid grid-cols-3">
+          {configuracao.map((item) => (
+            <div key={item.tipoMarmitex} className="border m-1 rounded-md py-4 hover:bg-pink-200 transition duration-200">
+              <div className="font-sans text-xl font-extrabold">
                 {item.tipoMarmitex}
-                <br />
+              </div>
+              <div className="text-pink-800 font-semibold my-2">
                 R$ {item.preco}
-              </p>
+              </div>
+              <div className="space-y-1">
+                <div className="flex space-x-2 justify-center sm:justify-start ml-0 sm:ml-5">
+                  <Beef className="text-red-700" />
+                  <div className="font-extrabold">{item.maxCarnes}</div>
+                  <div className="hidden sm:block">Carnes</div>
+                </div>
+
+                <div className="flex space-x-2 justify-center sm:justify-start ml-0 sm:ml-5">
+                  <EggFried className="text-yellow-600" />
+                  <div className="font-extrabold">{item.maxGuarnicoes}</div>
+                  <div className="hidden sm:block">Guarnições</div>
+                </div>
+
+                <div className="flex space-x-2 justify-center sm:justify-start ml-0 sm:ml-5">
+                  <Salad className="text-green-800" />
+                  <div className="font-extrabold">{item.maxSaladas}</div>
+                  <div className="hidden sm:block">Saladas</div>
+                </div>
+              </div>
             </div>
-            <div className="space-x-2 flex">
-              <p>Max. Carnes: {item.maxCarnes}</p>
-              <p>Max: Guarnições: {item.maxGuarnicoes}</p>
-              <p>Max: Saladas: {item.maxSaladas}</p>
-            </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </div>
   );

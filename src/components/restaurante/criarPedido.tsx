@@ -36,12 +36,12 @@ export default function CriarPedido() {
 
   return (
     <div className="text-center px-4">
-      <div className="my-3 border p-2 rounded-lg">
+      <div className="my-3 p-2">
         <div>
           <MarmitexComponent />
         </div>
 
-        <h2 className="font-serif text-3xl text-slate-700 mb-4">
+        <h2 className="font-serif text-3xl text-slate-700 my-4">
           Cardapio de hoje
         </h2>
         <div>
