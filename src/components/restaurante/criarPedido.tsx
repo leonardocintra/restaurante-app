@@ -5,6 +5,7 @@ import { Button } from "../ui/button";
 import { Input } from "../ui/input";
 import MarmitexComponent from "./marmitex";
 import { FilePenLine, Laugh } from "lucide-react";
+import CardapioComponent from "./cardapio";
 
 export default function CriarPedido() {
   const [pedido, setPedido] = useState("");
@@ -42,14 +43,8 @@ export default function CriarPedido() {
           <MarmitexComponent />
         </div>
 
-        <h2 className="font-serif text-3xl text-slate-700 my-4">
-          Cardapio de hoje
-        </h2>
         <div>
-          <p>Carnes</p>
-          <p>Pizzas</p>
-          <p>Bebidas</p>
-          <p>Sobremesas</p>
+          <CardapioComponent />
         </div>
       </div>
 
