@@ -4,6 +4,9 @@ import { IMarmitexConfiguracao } from "restaurante";
 
 export default function MarmitexComponent() {
   const [configuracao, setConfiguracao] = useState<IMarmitexConfiguracao[]>([]);
+  const [selecionado, setSelecionado] = useState<IMarmitexConfiguracao | null>(
+    null
+  );
 
   useEffect(() => {
     fetch("/api/sandra/marmitex")
@@ -26,7 +29,12 @@ export default function MarmitexComponent() {
       <div>
         <div className="grid grid-cols-3">
           {configuracao.map((item) => (
-            <div key={item.tipoMarmitex} className="border m-1 rounded-md py-4 hover:bg-pink-200 transition duration-200">
+            <div
+              key={item.tipoMarmitex}
+              onClick={() => setSelecionado(item)}
+              className={`border-2 m-1 rounded-md py-4 hover:bg-pink-100 transition duration-200 
+                ${item === selecionado && "bg-pink-200 border-pink-400"}`}
+            >
               <div className="font-sans text-xl font-extrabold">
                 {item.tipoMarmitex}
               </div>
