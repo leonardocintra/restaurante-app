@@ -36,6 +36,34 @@ export default function CriarPedido() {
     setPedido(numeroPedido);
   };
 
+  if (pedido !== "") {
+    return (
+      <div className="text-center px-4">
+        <div className="mt-8 space-y-3">
+          <div>
+            Informações do pedido de <strong> {nome} </strong>
+          </div>
+          <div className="mt-5">
+            Pedido número:{" "}
+            <span className="text-green-800 font-bold text-xl">{pedido}</span>
+          </div>
+          <div className="text-indigo-500 font-light">
+            Seu pedido ja está na fila para montagem da marmita :D
+          </div>
+          <div className="text-red-700 font-light flex justify-center space-x-2">
+            <div>Voce irá receber notificações no seu Whatsapp</div>
+
+            <Laugh />
+          </div>
+        </div>
+
+        <div className="mt-4">
+          <Button variant={"secondary"}>Fazer novo pedido</Button>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="text-center px-4">
       <div className="my-3 p-2">
@@ -49,6 +77,10 @@ export default function CriarPedido() {
       </div>
 
       <div className="space-y-2 flex flex-col items-center">
+        <div className="text-2xl text-purple-800 font-semibold font-mono mt-3">
+          <h3>Informe seus dados</h3>
+        </div>
+
         <div className="space-y-2 px-6 max-w-xs">
           <Input
             type="text"
@@ -71,23 +103,6 @@ export default function CriarPedido() {
             Fazer meu pedido <FilePenLine />
           </Button>
         </div>
-
-        {pedido && (
-          <div className="mt-8 space-y-3">
-            <div className="mt-5">
-              Pedido número:{" "}
-              <span className="text-green-800 font-bold text-xl">{pedido}</span>
-            </div>
-            <div className="text-indigo-500 font-light">
-              Seu pedido ja está na fila para montagem da marmita :D
-            </div>
-            <div className="text-red-700 font-light flex justify-center space-x-2">
-              <div>Voce irá receber notificações no seu Whatsapp</div>
-
-              <Laugh />
-            </div>
-          </div>
-        )}
       </div>
     </div>
   );

@@ -29,7 +29,7 @@ export default function CardapioComponent() {
   function itemEstaSelecionado(item: string) {
     const selecionado = itemSelecionado.includes(item);
     if (selecionado) {
-      return "border-2 border-green-600 bg-emerald-300 font-semibold shadow-md font-mono";
+      return "border-2 border-green-600 bg-emerald-300 font-semibold shadow-md";
     }
   }
 
@@ -40,14 +40,14 @@ export default function CardapioComponent() {
       <h2 className="font-serif text-3xl text-slate-700 my-4">
         Cardapio de hoje
       </h2>
-      <div className="max-w-sm flex flex-col mx-auto">
+      <div className="max-w-xs flex flex-col mx-auto">
         {cardapio.map((c) => (
           <div key={c.tipo}>
             <div className="font-bold uppercase mt-6 text-2xl">{c.tipo}</div>
             {c.items.map((item, index) => (
               <div key={index} onClick={() => adicionarRemoverItem(item)}>
                 <div
-                  className={`border m-2 p-1 hover:bg-slate-200 transition rounded-lg 
+                  className={`border m-2 font-sans font-light hover:font-semibold hover:bg-slate-200 transition rounded-lg py-3 text-lg 
                     ${itemEstaSelecionado(item)}`}
                 >
                   {item}
