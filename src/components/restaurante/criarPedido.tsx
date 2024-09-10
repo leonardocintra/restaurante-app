@@ -6,11 +6,13 @@ import { Input } from "../ui/input";
 import MarmitexComponent from "./marmitex";
 import { FilePenLine, Laugh } from "lucide-react";
 import CardapioComponent from "./cardapio";
+import { IMarmitexConfiguracao } from "restaurante";
 
 export default function CriarPedido() {
   const [pedido, setPedido] = useState("");
   const [nome, setNome] = useState("");
   const [telefone, setTelefone] = useState("");
+  const [marmitex, setMarmitex] = useState<IMarmitexConfiguracao | null>(null);
 
   function generateOrderNumber(): string {
     const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
@@ -22,6 +24,10 @@ export default function CriarPedido() {
     }
 
     return orderNumber;
+  }
+
+  function handleMarmitexSelecionado(marmitex: IMarmitexConfiguracao) {
+    setMarmitex(marmitex);
   }
 
   const criarPedido = async () => {
@@ -68,11 +74,12 @@ export default function CriarPedido() {
     <div className="text-center px-4">
       <div className="my-3 p-2">
         <div>
-          <MarmitexComponent />
+          <h2>{marmitex?.tipoMarmitex}</h2>
+          <MarmitexComponent onMarmitexSelect={handleMarmitexSelecionado} />
         </div>
 
         <div>
-          <CardapioComponent />
+          <CardapioComponent marmitex={marmitex} />
         </div>
       </div>
 

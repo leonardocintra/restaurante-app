@@ -1,7 +1,11 @@
 import { useEffect, useState } from "react";
-import { ICardapio } from "restaurante";
+import { ICardapio, IMarmitexConfiguracao } from "restaurante";
 
-export default function CardapioComponent() {
+type CardapioComponentProps = {
+  marmitex: IMarmitexConfiguracao | null;
+};
+
+export default function CardapioComponent(props: CardapioComponentProps) {
   const [cardapio, setCardapio] = useState<ICardapio[]>([]);
   const [itemSelecionado, setItemSelecionado] = useState<string[]>([]);
 
@@ -33,8 +37,6 @@ export default function CardapioComponent() {
     }
   }
 
-  console.log(itemSelecionado);
-
   return (
     <div>
       <h2 className="font-serif text-3xl text-slate-700 my-4">
@@ -43,7 +45,10 @@ export default function CardapioComponent() {
       <div className="max-w-xs flex flex-col mx-auto">
         {cardapio.map((c) => (
           <div key={c.tipo}>
-            <div className="font-bold uppercase mt-6 text-2xl">{c.tipo}</div>
+            <div className="font-bold uppercase mt-6 text-2xl flex justify-center space-x-2 items-center">
+              <div>{c.tipo}</div>
+              <div className="text-sm text-slate-500">Qtd. ({props.marmitex?.maxCarnes}) </div>
+            </div>
             {c.items.map((item, index) => (
               <div key={index} onClick={() => adicionarRemoverItem(item)}>
                 <div

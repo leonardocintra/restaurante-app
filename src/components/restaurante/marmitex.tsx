@@ -2,7 +2,7 @@ import { Beef, EggFried, Salad } from "lucide-react";
 import { useEffect, useState } from "react";
 import { IMarmitexConfiguracao } from "restaurante";
 
-export default function MarmitexComponent() {
+export default function MarmitexComponent({ onMarmitexSelect }: any) {
   const [configuracao, setConfiguracao] = useState<IMarmitexConfiguracao[]>([]);
   const [marmitexSelecionado, setMarmitexSelecionado] =
     useState<IMarmitexConfiguracao | null>(null);
@@ -19,6 +19,11 @@ export default function MarmitexComponent() {
     return <div>Carregando...</div>;
   }
 
+  function handleMarmitexSelecionado(marmitex: IMarmitexConfiguracao) {
+    setMarmitexSelecionado(marmitex);
+    onMarmitexSelect(marmitex);
+  }
+
   return (
     <div>
       <div className="my-4">
@@ -30,7 +35,7 @@ export default function MarmitexComponent() {
           {configuracao.map((item) => (
             <div
               key={item.tipoMarmitex}
-              onClick={() => setMarmitexSelecionado(item)}
+              onClick={() => handleMarmitexSelecionado(item)}
               className={`border-2 m-1 rounded-md py-4 hover:bg-pink-100 transition duration-200 
                 ${
                   item === marmitexSelecionado && "bg-pink-200 border-pink-400"
