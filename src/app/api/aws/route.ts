@@ -13,7 +13,7 @@ export async function POST(req: Request) {
       pedido: data.pedido,
       nome: data.nome,
       telefone: data.telefone,
-      item: "Carnes",
+      items: data.items,
       status: {
         id: 1,
         descricao: "Pedido criado",

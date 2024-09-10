@@ -3,6 +3,7 @@ import { ICardapio, IMarmitexConfiguracao } from "restaurante";
 
 type CardapioComponentProps = {
   marmitex: IMarmitexConfiguracao | null;
+  onItemsSelecionados: (items: string[]) => void;
 };
 
 export default function CardapioComponent(props: CardapioComponentProps) {
@@ -24,10 +25,15 @@ export default function CardapioComponent(props: CardapioComponentProps) {
 
   function adicionarRemoverItem(item: string) {
     const index = itemSelecionado.indexOf(item);
+
     if (index === -1) {
-      setItemSelecionado([...itemSelecionado, item]);
+      const handleItem = [...itemSelecionado, item];
+      setItemSelecionado(handleItem);
+      props.onItemsSelecionados(handleItem);
     } else {
-      setItemSelecionado(itemSelecionado.filter((i) => i !== item));
+      const handleItem = itemSelecionado.filter((i) => i !== item);
+      setItemSelecionado(handleItem);
+      props.onItemsSelecionados(handleItem);
     }
   }
 
@@ -48,7 +54,7 @@ export default function CardapioComponent(props: CardapioComponentProps) {
     } else if (tipo === "salada") {
       return marmitex.maxSaladas;
     } else {
-      return "0";
+      return "1";
     }
   }
 

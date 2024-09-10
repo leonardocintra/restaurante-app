@@ -13,6 +13,7 @@ export default function CriarPedido() {
   const [nome, setNome] = useState("");
   const [telefone, setTelefone] = useState("");
   const [marmitex, setMarmitex] = useState<IMarmitexConfiguracao | null>(null);
+  const [itemsSelecionado, setItemSelecionado] = useState<string[]>([]);
 
   function generateOrderNumber(): string {
     const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
@@ -30,12 +31,23 @@ export default function CriarPedido() {
     setMarmitex(marmitex);
   }
 
+  function handleItemsSelecionados(items: string[]) {
+    setItemSelecionado(items);
+  }
+
   const criarPedido = async () => {
     const numeroPedido = generateOrderNumber();
 
+    console.log(itemsSelecionado);
+
     fetch("/api/aws/", {
       method: "POST",
-      body: JSON.stringify({ pedido: numeroPedido, nome, telefone }),
+      body: JSON.stringify({
+        pedido: numeroPedido,
+        nome,
+        telefone,
+        items: itemsSelecionado,
+      }),
       headers: { "Content-Type": "application/json" },
     });
 
@@ -64,7 +76,12 @@ export default function CriarPedido() {
         </div>
 
         <div className="mt-4">
-          <Button variant={"secondary"}>Fazer novo pedido</Button>
+          <Button
+            onClick={() => window.location.reload()}
+            variant={"secondary"}
+          >
+            Fazer novo pedido
+          </Button>
         </div>
       </div>
     );
@@ -78,7 +95,10 @@ export default function CriarPedido() {
         </div>
 
         <div>
-          <CardapioComponent marmitex={marmitex} />
+          <CardapioComponent
+            marmitex={marmitex}
+            onItemsSelecionados={handleItemsSelecionados}
+          />
         </div>
       </div>
 
