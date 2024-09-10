@@ -44,10 +44,12 @@ export default function CardapioComponent(props: CardapioComponentProps) {
       </h2>
       <div className="max-w-xs flex flex-col mx-auto">
         {cardapio.map((c) => (
-          <div key={c.tipo}>
+          <div key={c.tipo} className={props.marmitex ? "" : "hidden"}>
             <div className="font-bold uppercase mt-6 text-2xl flex justify-center space-x-2 items-center">
               <div>{c.tipo}</div>
-              <div className="text-sm text-slate-500">Qtd. ({props.marmitex?.maxCarnes}) </div>
+              <div className="text-sm text-slate-500">
+                Qtd. ({props.marmitex?.maxCarnes}){" "}
+              </div>
             </div>
             {c.items.map((item, index) => (
               <div key={index} onClick={() => adicionarRemoverItem(item)}>
