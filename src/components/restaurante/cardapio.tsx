@@ -8,6 +8,7 @@ type CardapioComponentProps = {
 export default function CardapioComponent(props: CardapioComponentProps) {
   const [cardapio, setCardapio] = useState<ICardapio[]>([]);
   const [itemSelecionado, setItemSelecionado] = useState<string[]>([]);
+  const marmitex = props.marmitex;
 
   useEffect(() => {
     fetch("/api/sandra/cardapio")
@@ -37,6 +38,20 @@ export default function CardapioComponent(props: CardapioComponentProps) {
     }
   }
 
+  function exibirQuantidadeMaxima(tipo: string) {
+    if (!marmitex) {
+      return "0";
+    } else if (tipo === "carne") {
+      return marmitex.maxCarnes;
+    } else if (tipo === "guarnicao") {
+      return marmitex.maxGuarnicoes;
+    } else if (tipo === "salada") {
+      return marmitex.maxSaladas;
+    } else {
+      return "0";
+    }
+  }
+
   return (
     <div>
       <h2 className="font-serif text-3xl text-slate-700 my-4">
@@ -48,7 +63,7 @@ export default function CardapioComponent(props: CardapioComponentProps) {
             <div className="font-bold uppercase mt-6 text-2xl flex justify-center space-x-2 items-center">
               <div>{c.tipo}</div>
               <div className="text-sm text-slate-500">
-                Qtd. ({props.marmitex?.maxCarnes}){" "}
+                Qtd. ({exibirQuantidadeMaxima(c.tipo)})
               </div>
             </div>
             {c.items.map((item, index) => (
