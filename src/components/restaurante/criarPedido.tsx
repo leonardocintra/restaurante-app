@@ -74,7 +74,6 @@ export default function CriarPedido() {
     <div className="text-center px-4">
       <div className="my-3 p-2">
         <div>
-          <h2>{marmitex?.tipoMarmitex}</h2>
           <MarmitexComponent onMarmitexSelect={handleMarmitexSelecionado} />
         </div>
 
