@@ -12,6 +12,7 @@ export async function POST(req: Request) {
       restaurante: "tempeiro-e-amor",
       pedido: data.pedido,
       nome: data.nome,
+      sobrenome: data.sobrenome,
       telefone: data.telefone,
       items: data.items,
       status: {

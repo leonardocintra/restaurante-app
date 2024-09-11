@@ -11,6 +11,7 @@ import { IMarmitexConfiguracao } from "restaurante";
 export default function CriarPedido() {
   const [pedido, setPedido] = useState("");
   const [nome, setNome] = useState("");
+  const [sobrenome, setSobrenome] = useState("");
   const [telefone, setTelefone] = useState("");
   const [marmitex, setMarmitex] = useState<IMarmitexConfiguracao | null>(null);
   const [itemsSelecionado, setItemSelecionado] = useState<string[]>([]);
@@ -45,6 +46,7 @@ export default function CriarPedido() {
       body: JSON.stringify({
         pedido: numeroPedido,
         nome,
+        sobrenome,
         telefone,
         items: itemsSelecionado,
       }),
@@ -112,6 +114,12 @@ export default function CriarPedido() {
             type="text"
             placeholder="Seu nome ..."
             onChange={(e) => setNome(e.target.value)}
+          />
+
+          <Input
+            type="text"
+            placeholder="Sobrenome ..."
+            onChange={(e) => setSobrenome(e.target.value)}
           />
 
           <Input
