@@ -39,8 +39,6 @@ export default function CriarPedido() {
   const criarPedido = async () => {
     const numeroPedido = generateOrderNumber();
 
-    console.log(itemsSelecionado);
-
     fetch("/api/aws/", {
       method: "POST",
       body: JSON.stringify({
